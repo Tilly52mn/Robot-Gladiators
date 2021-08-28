@@ -6,12 +6,11 @@ var playerMoney = 10
 // you can also log multiple values at once like this
 console.log(playerName, playerAttack, playerHealth);
 
-var enemyName = "Roborto";
+var enemyNames = ["Roborto", "AMy Android", "Robo Trumble"];
 var enemyHealth = 50
 var enemyAttack = 12
 
-console.log(enemyName, enemyAttack, enemyHealth);
- var fight = function(){
+ var fight = function(enemyName){
      window.alert("Welcome to Robot Gladiators!")
 var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose")
 //IF PALYER CHOOSES TO FIGHT, THEN FIGHT
@@ -39,7 +38,7 @@ playerHealth = playerHealth - enemyAttack;
   }
   //if player chooses to skip
 } else if(promptFight ==="skip" || promptFight === "SKIP"){
-  var confirmSkip = window.confirm("Are you srue you'd like to quit?")
+  var confirmSkip = window.confirm("Are you sure you'd like to quit?")
   //if yes(true), leave fight
   if(confirmSkip){
     window.alert(playerName + "  has decided to skip this fight. Goodbye!")
@@ -48,7 +47,9 @@ playerHealth = playerHealth - enemyAttack;
   }
   //if no ask question again by running fight again
   else{
-    fight()
+    for(var i = 0; i < enemyNames.length; i++){
+      fight(enemyNames[i])
+    }
   }
 } else{
   window.alert("You need to choose a valid option. Try again!")
@@ -57,5 +58,7 @@ playerHealth = playerHealth - enemyAttack;
 
  };
 //execute fuction
- fight();
 
+for(var i = 0; i < enemyNames.length; i++){
+  fight(enemyNames[i])
+};
