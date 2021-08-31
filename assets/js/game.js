@@ -6,10 +6,20 @@ var playerMoney = 10
 // you can also log multiple values at once like this
 console.log(playerName, playerAttack, playerHealth);
 
+var randomNumber = function(){
+  var value = Math.floor(Math.random()*21) + 40;
+
+  return value;
+}
 var enemyNames = ["Roborto", "AMy Android", "Robo Trumble"];
-var enemyHealth = 50
+var enemyHealth = randomNumber(40,60);
 var enemyAttack = 12
   window.alert("Welcome to Robot Gladiators!")
+  var randomNumber = function(min,max){
+    var value = Math.floor(Math.random()*(max-min+1) + min);
+
+    return value;
+  }
   var fight = function(enemyName){
     while(playerHealth > 0 && enemyHealth > 0){
      var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose")
@@ -20,7 +30,7 @@ var enemyAttack = 12
        if(confirmSkip){
          window.alert(playerName + "  has decided to skip this fight. Goodbye!")
  
-         playerMoney = playerMoney -10
+         playerMoney = Math.max(0,playerMoney -10)
          console.log("playermoney", playerMoney)
          break;
        }
@@ -28,7 +38,12 @@ var enemyAttack = 12
      //IF PALYER CHOOSES TO FIGHT, THEN FIGHT
      //if(promptFight ==="fight" || promptFight ==="FIGHT"){
        //HAVE PLAYER ATTACK
-       enemyHealth = enemyHealth - playerAttack
+       console.log(enemyHealth)
+
+       var damage = randomNumber(playerAttack - 3, playerAttack);
+
+       enemyHealth = Math.max(0,enemyHealth - damage)
+       
        console.log(playerName + " attacked " + enemyName +". " + enemyName + " now has " + enemyHealth + " health remaining");
        // check enemy's health
        if(enemyHealth <=0) {
@@ -41,7 +56,10 @@ var enemyAttack = 12
          window.alert( enemyName +" still has " + enemyHealth+ " health left")
        }
        // Subtract the value of `enemyAttack` from the value of `playerHealth` and use that result to update the value in the `playerHealth` variable.
-     playerHealth = playerHealth - enemyAttack;
+
+       var damage = randomNumber(enemyAttack -3, enemyAttack)
+
+     playerHealth = Math.max(0,playerHealth - damage);
        // Log a resulting message to the console so we know that it worked.
        console.log(enemyName + " attacked " + playerName +". " + playerName + " now has " + playerHealth + " health remaining");
        // check enemy's health
@@ -62,7 +80,7 @@ var startGame = function(){
     if (playerHealth > 0){
       window.alert( "Welcome to Robot Gladiators! Round " + (i + 1))
       var pickedEnemyName = enemyNames[i]
-      enemyHealth = 50
+      enemyHealth = randomNumber(40,60)
     fight(pickedEnemyName)
     if (i < playerHealth > 0 && enemyNames.length - 1) {
       var storeConfirm = window.confirm("The fight is over, visit the store before the next round?")
@@ -98,8 +116,8 @@ var startGame = function(){
       case "refill": 
       case "REFILL":
         if(playerMoney >= 7){
-          window.alert("Refilling player's health by 20 for 7 dollars.");
-          playerHealth = playerHealth + 20;
+          window.alert("Refilling player's health by 30 for 7 dollars.");
+          playerHealth = playerHealth + 30;
           playerMoney = playerMoney -7;
         }
         else{
@@ -108,8 +126,8 @@ var startGame = function(){
         break;
       case "upgrade" :
       case "UPGRADE" :
-        if(playerMoney >= 7){ window.alert("Upgrading players attack by 6 for 7 dollars.");
-      playerAttack = playerAttack + 6;
+        if(playerMoney >= 7){ window.alert("Upgrading players attack by 9 for 7 dollars.");
+      playerAttack = playerAttack + 9;
       playerMoney = playerMoney - 7;
         }
         else{
